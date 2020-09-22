@@ -23,7 +23,7 @@ In practical terms, this means that the local process (i.e. NomadBishop) can clo
 
 Syscall macros are not included, but can be quickly generated using the aforementioned [SysWhispers](https://github.com/jthuraisamy/SysWhispers) script:
 
-```console
+```
 $ python3 syswhispers.py -v 8,10 \
 -f NtQuerySystemInformation,NtWriteVirtualMemory,NtOpenProcess,NtCreateSection, \
 NtMapViewOfSection,NtUnmapViewOfSection,NtQueueApcThread,NtAlertResumeThread, \
@@ -34,7 +34,7 @@ The resulting `whisper.asm` and `whisper.h` files should be placed into the `Nom
 
 The NomadBishop Visual Studio 2019 project, as provided, produces a console application (EXE). The path to the binary payload (i.e. shellcode) is specified in the `Resource.rc` file and the payload is packed into the PE's resource header at compile-time. The resulting NomadBishop executable takes a single argument specifying the name of the target process to attempt to inject into, e.g.:
 
-```console
+```
 C:\>NomadBishop.exe explorer.exe
 ```
 
