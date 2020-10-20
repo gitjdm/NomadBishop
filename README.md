@@ -19,6 +19,8 @@ NomadBishop is a rough C/C++ proof-of-concept that implements the same procedure
 
 In practical terms, this means that the local process (i.e. NomadBishop) can close its section handle, unmap its view, and exit normally after the remote thread is executed. What could possibly go wrong?
 
+[@SolomonSklash](https://www.solomonsklash.io) also has an implementation in C worth checking out: [SeasideBishop](https://github.com/SolomonSklash/SeasideBishop). The associated [blog post](https://www.solomonsklash.io/seaside-bishop.html) is a great breakdown of the technique.
+
 ### Usage
 
 Syscall macros are not included, but can be quickly generated using the aforementioned [SysWhispers](https://github.com/jthuraisamy/SysWhispers) script:
