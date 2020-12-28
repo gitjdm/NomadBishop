@@ -394,6 +394,5 @@ FodyWeavers.xsd
 *.out
 *.app
 
-# SysWhispers files
+# SysWhispers assembly macros
 whisper.asm
-whisper.h
